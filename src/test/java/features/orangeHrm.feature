@@ -43,9 +43,9 @@
       Then verify the employee details are created
       Examples:
         | First Name | Last Name | Employee Id |
-        |Vir2         |Savarkar   |444          |
-        |MK2          |Gandhi     |100          |
-        |Tony2        |Stark      |999          |
+        |Vir22         |Savarkar2   |4444          |
+        |MK22        |Gandhi2     |1000          |
+        |Tony22        |Stark2      |9999          |
 
     @multipleVacancies
     Scenario Outline: Creating multiple Vacancies
@@ -61,7 +61,7 @@
       Then successfully saved message is displayed
       Examples:
         | vacancy name |
-        |Devops1       |
-        |Devope2       |
+        |Devops10       |
+        |Devope20       |
 
 

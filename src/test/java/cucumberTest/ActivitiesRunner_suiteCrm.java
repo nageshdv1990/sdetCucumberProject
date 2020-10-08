@@ -5,18 +5,17 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 
-
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/java/features",
         glue = {"stepDefinitions"},
-        tags = "@scheduleAMeetingAndInviteMembers",
+        tags = "@suiteCrm",
         strict = true,
-        plugin = {"pretty","html:target/cucumber-reports/reports.html"},
+        plugin = {"pretty","html:target/cucumber-reports/reports3.html"},
         monochrome = true
 )
 
-public class ActivitiesRunner {
+public class ActivitiesRunner_suiteCrm {
     //empty
 }
 

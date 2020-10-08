@@ -34,6 +34,7 @@ public class suiteCrmStepDef {
             + File.separator;
 
     public static String CHROME_DRIVER_PATH = DRIVER_DIR+"chromedriver.exe";
+  private String lName;
 
 
   @Given("user is Alchemy CRM site")
@@ -97,6 +98,7 @@ public class suiteCrmStepDef {
     public void fillInThe(String lastName) {
       wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("last_name")));
       driver.findElement(By.id("last_name")).sendKeys(lastName);
+      lName = lastName;
     }
 
     @And("click on save lead button")
@@ -112,6 +114,11 @@ public class suiteCrmStepDef {
 
     @And("Validate the results")
     public void validateTheResults() {
+      wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"MassUpdate\"]/div[3]/table/tbody/tr[1]/td[3]")));
+        WebElement dataFromTable = driver.findElement(By.xpath("//table[@class=\"list view table-responsive\"]/tbody/tr[1]/td[3]"));
+        String data = dataFromTable.getText();
+        Assert.assertEquals(data, lName);
+        System.out.println(data);
 
     }
 

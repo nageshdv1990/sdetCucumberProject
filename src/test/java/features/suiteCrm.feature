@@ -24,9 +24,9 @@ Feature: suite CRM features
     And Close the Browser
     Examples:
       | leadName |
-      |Mk Gandhi2 |
-      |Vir Savarkar2|
-      |Bhagat Singh2|
+      |Mk Gandhi4 |
+      |Vir Savarkar4|
+      |Bhagat Singh4|
 
   @scheduleAMeetingAndInviteMembers
    Scenario Outline: Schedule a meeting and invite members
