@@ -19,12 +19,10 @@ import java.util.List;
 import java.util.Random;
 
 public class suiteCrmStepDef {
-  //  public baseClass baseClass;
-   // Random rand = new Random();
-   // String userName;
-   // String firstName1;
-   // String lastName1;
+
     int count;
+    String product;
+    String meetingName;
 
 
     public WebDriver driver;
@@ -37,7 +35,8 @@ public class suiteCrmStepDef {
 
     public static String CHROME_DRIVER_PATH = DRIVER_DIR+"chromedriver.exe";
 
-    @Given("user is Alchemy CRM site")
+
+  @Given("user is Alchemy CRM site")
     public void userIsAlchemyCRMSite() {
         System.setProperty("webdriver.chrome.driver",CHROME_DRIVER_PATH);
         ChromeOptions options = new ChromeOptions();
@@ -81,7 +80,7 @@ public class suiteCrmStepDef {
 
     @And("Close the Browser")
     public void closeTheBrowser() {
-     // driver.quit();
+      driver.quit();
     }
 
     @When("user navigates to Create Lead page")
@@ -129,6 +128,7 @@ public class suiteCrmStepDef {
     public void enterTheDetailsOfTheMeeting(String subject) {
       wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("input#name")));
       driver.findElement(By.cssSelector("input#name")).sendKeys(subject);
+      meetingName = subject;
     }
 
     @And("Search for members and add them to the meeting {string}, {string}, {string}")
@@ -174,6 +174,11 @@ public class suiteCrmStepDef {
 
     @And("confirms if meeting is created")
     public void confirmsIfMeetingIsCreated() {
+      wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"MassUpdate\"]/div[3]/table/tbody/tr[1]/td[4]")));
+      WebElement dataFromTable = driver.findElement(By.xpath("//table[@class=\"list view table-responsive\"]/tbody/tr[1]/td[4]"));
+      String data = dataFromTable.getText();
+      Assert.assertEquals(data,meetingName);
+      System.out.println(data);
     }
 
     @When("user navigates to the Create Product page")
@@ -191,7 +196,7 @@ public class suiteCrmStepDef {
       wait.until(ExpectedConditions.presenceOfElementLocated(By.id("name")));
       driver.findElement(By.id("name")).sendKeys(name);
       driver.findElement(By.id("price")).sendKeys(price);
-
+      product = name;
     }
 
     @And("click Save products")
@@ -206,5 +211,10 @@ public class suiteCrmStepDef {
 
     @And("validate the products created")
     public void validateTheProductsCreated() {
+      wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"MassUpdate\"]/div[3]/table/tbody/tr[1]/td[3]")));
+      WebElement dataFromTable = driver.findElement(By.xpath("//table[@class=\"list view table-responsive\"]/tbody/tr[1]/td[3]"));
+      String data = dataFromTable.getText();
+      Assert.assertEquals(data,product);
+      System.out.println(data);
     }
 }

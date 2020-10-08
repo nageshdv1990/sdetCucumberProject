@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/java/features",
         glue = {"stepDefinitions"},
-        tags = "@creatingAProduct\n",
+        tags = "@scheduleAMeetingAndInviteMembers",
         strict = true,
         plugin = {"pretty","html:target/cucumber-reports/reports.html"},
         monochrome = true

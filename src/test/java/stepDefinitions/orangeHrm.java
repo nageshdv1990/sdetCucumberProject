@@ -131,7 +131,7 @@ public class orangeHrm {
 
     @Then("successfully saved message is displayed")
     public void successfullySavedMessageIsDisplayed() {
-        System.out.println("Check with Saahil");
+        System.out.println("Saved");
     }
 
     @When("user hovers on Recruitment option and clicks on candidates")
